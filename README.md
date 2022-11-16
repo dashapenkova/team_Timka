@@ -20,6 +20,7 @@ This document describes an application for managing some different things at LNU
 
 The application is a ASP.NET MVC with EF Core application, based on one DB:
 - Relational database which stores data of users, teachers, students, departments.
+
 The purpose of the application is to help students with ther studying stuff. That's why it must be easy to use with nice UX and modern UI.
 
 ## Product features
