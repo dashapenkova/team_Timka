@@ -13,6 +13,10 @@ The purpose of this document is to build a WEB application to help students mana
 | UML  | Unified Modelling Language  |
 | ER   | Entity Relationship         |
 
+## UML: Use Case Diagram
+![UseCase_Diagram](https://user-images.githubusercontent.com/47561280/202564997-e10b2914-b429-4508-a2fa-92c71c4d5ebb.png)
+[UseCase_Diagram.pdf](https://github.com/dashapenkova/team_Timka/files/10035851/UseCase_Diagram.pdf)
+
 ## Intended audience and reading suggestions
 This document describes an application for managing some different things at LNU such as departments, courses, students, teachers. It will be useful for university students who want to manage studying well. Overall, the application will make you disciplined and help you to manage your studyings.
 
