@@ -46,15 +46,15 @@ The purpose of the application is to help students with ther studying stuff. Tha
 ## Used Concurency Patterns
 The alternative to pessimistic concurrency is optimistic concurrency. Optimistic concurrency means allowing concurrency conflicts to happen, and then reacting appropriately if they do. For example, Jane visits the Department Edit page and changes the Budget amount for the English department from $350,000.00 to $0.00.
 
-![image](https://user-images.githubusercontent.com/10209839/202171987-e1066193-d025-4e37-b2e2-dd3a86d1b5c0.png)
+![image](https://user-images.githubusercontent.com/47561214/202406314-52c07d9d-5c18-4961-8587-39fdceed7233.png)
 
-Before Jane clicks Save, John visits the same page and changes the Start Date field from 9/1/2007 to 9/1/2013.
+Before Jane clicks Save, John visits the same page and changes the Start Date field from 14-Nov-2022 to 14-Nov-2013.
 
-![image](https://user-images.githubusercontent.com/10209839/202172095-74681534-2a3b-4953-acf1-ef9dc5fe1a52.png)
+![image](https://user-images.githubusercontent.com/47561214/202407538-59237b63-fd0e-4210-9888-989489048309.png)
 
 Jane clicks Save first and sees her change when the browser returns to the Index page.
 
-![image](https://user-images.githubusercontent.com/10209839/202172159-8175f65f-6700-460a-8fa2-a305b8fd5f0e.png)
+![image](https://user-images.githubusercontent.com/47561214/202406874-7b9cf159-9e35-4481-a414-894a4edf48b3.png)
 
 Then John clicks Save on an Edit page that still shows a budget of $350,000.00. What happens next is determined by how you handle concurrency conflicts.
 
@@ -68,6 +68,9 @@ Some of the options include the following:
 
 - You can prevent John's change from being updated in the database.
   Typically, you would display an error message, show him the current state of the data, and allow him to reapply his changes if he still wants to make them. This is called a Store Wins scenario. (The data-store values take precedence over the values submitted by the client.) You'll implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted to what's happening.
+
+![image](https://user-images.githubusercontent.com/47561214/202407265-04a945db-f9f6-40dc-874a-e4399a1b507e.png)
+
 
 # Detecting concurrency conflicts
 
