@@ -86,6 +86,14 @@ You can resolve conflicts by handling DbConcurrencyException exceptions that the
 - Configure the Entity Framework to include the original values of every column in the table in the Where clause of Update and Delete commands.
   As in the first option, if anything in the row has changed since the row was first read, the Where clause won't return a row to update, which the Entity Framework interprets as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require that you maintain large amounts of state. As noted earlier, maintaining large amounts of state can affect application performance. Therefore this approach is generally not recommended, and it isn't the method used in this project.
 
-# Database diagram
+## Database diagram
 
 ![image](https://user-images.githubusercontent.com/47561143/202743079-d38fe884-c1d8-4769-9f48-8212aa8c2526.png)
+
+## Architecture
+ASP.NET MVC Entity Framework project 
+
+![image](https://user-images.githubusercontent.com/47561214/203141547-6bcb6a1e-07d0-4b1e-84b5-93516b9386eb.png)
+
+![Screenshot 2022-11-21 212520](https://user-images.githubusercontent.com/47561214/203142470-41025326-b698-4067-909d-0a9ad3ddd9dc.png)
+
