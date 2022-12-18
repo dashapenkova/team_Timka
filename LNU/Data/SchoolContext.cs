@@ -1,14 +1,16 @@
 ﻿using LNU.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LNU.Data
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : IdentityDbContext<User>
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
         }
-
+        public new DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -20,6 +22,30 @@ namespace LNU.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityRole>(entity =>
+            {
+                entity.HasData(
+                    new IdentityRole
+                    {
+                        Id = "1",
+                        Name = Data.Roles.Admin,
+                        NormalizedName = Data.Roles.Admin.ToUpper()
+                    },
+                    new IdentityRole
+                    {
+                        Id = "2",
+                        Name = Data.Roles.LnuUser,
+                        NormalizedName = Data.Roles.LnuUser.ToUpper()
+                    }
+                );
+            });
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Student>().ToTable("Person");

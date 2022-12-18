@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LNU.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using LNU.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace LNU
 {
@@ -36,11 +39,17 @@ namespace LNU
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<User, IdentityRole>()
+               .AddRoleManager<RoleManager<IdentityRole>>()
+               .AddDefaultUI()
+               .AddDefaultTokenProviders()
+               .AddEntityFrameworkStores<SchoolContext>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<User> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -53,9 +62,15 @@ namespace LNU
                 app.UseHsts();
             }
 
+            DbInitializer.SeedSuperAdmin(userManager);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
+
+            app.UseMvc();
 
             app.UseMvc(routes =>
             {
